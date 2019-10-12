@@ -1,0 +1,20 @@
+@import "const";
+@import "functions";
+
+//FONT
+@mixin font_size($font_size, $line_height: 0) {
+  font-size: pixelInRem($font_size);
+
+  @if $line_height = 0 {
+    line-height: $font_size;
+  } @else {
+    line-height: pixelInRem($line_height);
+  }
+}
+
+//MEDIA
+@mixin media_interval($min, $max) {
+  @media (min-width: ($min + 1px)) and (max-width: $max) {
+    @content;
+  }
+}

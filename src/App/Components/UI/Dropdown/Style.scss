@@ -1,0 +1,109 @@
+@import "./../../../../Constants/Styleshets/main";
+
+.dropdown {
+  position: relative;
+  //HEADER
+  &__header {
+    position: relative;
+    box-sizing: border-box;
+    padding: 0 10px;
+    height: 40px;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid $color_black;
+    cursor: pointer;
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding-right: 15px;
+
+    &--default {
+      color: rgba($color_gray--dark, 0.7);
+    }
+  }
+
+  &__arrow {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    background-image: url("./../../../../Img/trangle.svg");
+    background-repeat: no-repeat;
+    width: 18px;
+    height: 14px;
+    background-position: center;
+    background-size: contain;
+    transform: translateY(-5px);
+  }
+
+  //BODY
+  &__body {
+
+  }
+
+  &__options {
+    position: absolute;
+    width: 100%;
+    display: none;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid $color_black;
+    background-color: $color_white;
+  }
+
+  &__option {
+    display: block;
+    padding: 0 10px;
+  }
+}
+
+.dropdown--open {
+  .dropdown {
+    //HEADER
+    &__header {
+      border-radius: 5px 5px 0 0;
+      border-bottom: 1px solid transparent;
+      cursor: default;
+    }
+
+    &__title {
+      color: rgba($color_gray--dark, 0.7);
+    }
+
+    &__arrow {
+      transform: translateY(-5px) rotate(180deg);
+    }
+
+    //BODY
+    &__body {
+
+    }
+
+    &__options {
+      display: block;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      border-top: none;
+    }
+
+    &__option {
+      padding: 10px;
+
+      &:hover {
+        background-color: $color_gray--light;
+        cursor: pointer;
+      }
+
+      &:last-child {
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+      }
+
+      &--default {
+        color: rgba($color_gray--dark, 0.7);
+      }
+    }
+  }
+}

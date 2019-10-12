@@ -1,0 +1,58 @@
+@import "./../../../../Constants/Styleshets/main";
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 5px 20px;
+  min-width: 150px;
+  min-height: 40px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 5px;
+  color: $color_white;
+  font-weight: bold;
+  text-transform: lowercase;
+  transition: background-color $transition_duration $transition_easing;
+
+  &--green {
+    background-color: $color_green;
+
+    &:focus,
+    &:hover {
+      background-color: $color_button_green--hover;
+    }
+  }
+  
+  &--blue {
+    background-color: $color_button_blue;
+
+    &:focus,
+    &:hover {
+      background-color: $color_button_blue--hover;
+    }
+  }
+
+  &--red {
+    background-color: $color_button_red;
+
+    &:focus,
+    &:hover {
+      background-color: $color_button_red--hover;
+    }
+  }
+
+  &--no-style {
+    background: none;
+    min-height: 0;
+    min-width: 0;
+    border-radius: 0;
+    transition: opacity 0.3s ease-in-out;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}

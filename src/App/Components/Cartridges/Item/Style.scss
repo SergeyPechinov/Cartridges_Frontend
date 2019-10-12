@@ -1,0 +1,177 @@
+@import "./../../../../Constants/Styleshets/main";
+
+.cartridges {
+  &__items {
+    display: flex;
+    align-items: center;
+    grid-template-columns: 1fr 3fr 3fr 3fr 3fr 1fr 3fr 3fr;
+
+    &:first-child {
+      border-top-left-radius: $table_radius;
+      border-top-right-radius: $table_radius;
+    }
+
+    &:last-child {
+      border-bottom-left-radius: $table_radius;
+      border-bottom-right-radius: $table_radius;
+    }
+
+    &:nth-child(even) {
+      background-color: $color_gray--light;
+    }
+
+    &:nth-child(odd) {
+      background-color: $color_gray;
+    }
+  }
+
+  &__item {
+    display: block;
+    padding: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    user-select: none;
+    @include font_small;
+
+    &:first-child {
+      padding-left: 15px;
+
+      @include media_interval($media500, $media768) {
+        padding-left: 10px;
+      }
+    }
+
+    &:last-child {
+      padding-right: 15px;
+
+      @include media_interval($media500, $media768) {
+        padding-right: 10px;
+      }
+    }
+
+    &--id {
+      width: 5%;
+
+      @include media_interval(0, $media500) {
+        width: 10%;
+      }
+    }
+
+    &--id_inv {
+      width: 15%;
+
+      @include media_interval($media500, $media768) {
+        width: 30%;
+      }
+
+      @include media_interval(0, $media500) {
+        width: 45%;
+      }
+    }
+
+    &--mark {
+      width: 15%;
+
+      @include media_interval($media500, $media768) {
+        width: 25%;
+      }
+
+      @include media_interval(0, $media500) {
+        display: none;
+      }
+    }
+
+    &--model {
+      width: 15%;
+
+      @include media_interval($media500, $media768) {
+        display: none;
+      }
+
+      @include media_interval(0, $media500) {
+        display: none;
+      }
+    }
+
+    &--statuses {
+      width: 20%;
+
+      @include media_interval($media768, $media1024) {
+        width: 25%;
+      }
+
+      @include media_interval($media500, $media768) {
+        width: 30%;
+      }
+
+      @include media_interval(0, $media500) {
+        width: 45%;
+      }
+    }
+
+    &--count-refill {
+      width: 7%;
+
+      @include media_interval($media768, $media1024) {
+        width: 15%;
+      }
+
+      @include media_interval($media500, $media768) {
+        display: none;
+      }
+
+      @include media_interval(0, $media500) {
+        display: none;
+      }
+    }
+
+    &--date-last-fill {
+      width: 15%;
+
+      @include media_interval($media768, $media1024) {
+        display: none;
+      }
+
+      @include media_interval($media500, $media768) {
+        display: none;
+      }
+
+      @include media_interval(0, $media500) {
+        display: none;
+      }
+    }
+
+    &--workers {
+      width: 8%;
+
+      @include media_interval($media500, $media1024) {
+        width: 10%;
+      }
+
+      @include media_interval($media500, $media768) {
+        width: 20%;
+      }
+
+      @include media_interval(0, $media500) {
+        display: none;
+      }
+    }
+  }
+}
+
+//HEADER
+.cartridges {
+  &__items.cartridges__items {
+    &--header {
+      background-color: $color_gray--dark;
+
+      .cartridges {
+        &__item {
+          padding-top: 15px;
+          padding-bottom: 15px;
+          color: $color_white;
+        }
+      }
+    }
+  }
+}

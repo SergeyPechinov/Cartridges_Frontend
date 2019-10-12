@@ -1,0 +1,38 @@
+@import "breakpoints";
+
+//COLORS
+$color_blue: #3D415A;
+$color_green: #058421;
+$color_white: #ffffff;
+$color_black: #000000;
+$color_red: #920007;
+$color_gray--light: #DCDCDC;
+$color_gray: #EFEEEE;
+$color_gray--dark: #525252;
+
+$color_button_green: $color_green;
+$color_button_green--hover: #056015;
+
+$color_button_blue: $color_blue;
+$color_button_blue--hover: #5d6186;
+
+$color_button_red: $color_red;
+$color_button_red--hover: #750007;
+
+//TRANSITION
+$transition_duration: 0.3s;
+$transition_duration_long: 0.5s;
+$transition_easing: ease-in-out;
+
+//FONTS
+$font_roboto: "Roboto", Arial;
+
+//PADDING, MARGINS, HEIGHTS AND WIDTHS
+$height_header_1024: 50px;
+$height_header_768: 40px;
+
+$height_footer_1024: 50px;
+$height_footer_768: 40px;
+
+//OTHER
+$table_radius: 7px;

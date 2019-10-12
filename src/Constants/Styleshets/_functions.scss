@@ -1,0 +1,10 @@
+//OUT PIXEL IN REM
+@function pixelInRem($input) {
+  $result: 0;
+
+  @if $input != 0 {
+    $result: $input / 16px + rem;
+  }
+
+  @return $result;
+}

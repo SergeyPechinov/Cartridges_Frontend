@@ -1,0 +1,18 @@
+@import "./../../../../Constants/Styleshets/main";
+
+.input-title {
+  box-sizing: border-box;
+  width: 100%;
+
+
+  &__title {
+    display: block;
+    padding: 5px;
+    @include font_default;
+    font-weight: 500;
+  }
+
+  &__input {
+    width: 100%;
+  }
+}

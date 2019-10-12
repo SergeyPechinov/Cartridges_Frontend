@@ -1,0 +1,33 @@
+@import "const";
+@import "mixins";
+
+//////////////////////////////
+//---FONTS
+//////////////////////////////
+
+//FONT WITH font_family
+@mixin font_big() {
+  font-family: $font_roboto;
+  @include font_size_big;
+}
+@mixin font_default() {
+  font-family: $font_roboto;
+  @include font_size_default;
+}
+@mixin font_small() {
+  font-family: $font_roboto;
+  @include font_size_small;
+}
+
+//FONT SIZES
+@mixin font_size_big {
+  @include font_size(20px, 24px);
+}
+
+@mixin font_size_default {
+  @include font_size(16px, 21px);
+}
+
+@mixin font_size_small {
+  @include font_size(14px, 16px);
+}

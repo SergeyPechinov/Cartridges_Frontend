@@ -1,0 +1,106 @@
+@import "./../../../../Constants/Styleshets/main";
+
+@keyframes rotate_button_close {
+  to {
+    transform: rotate(90deg);
+  }
+}
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  padding: 0 20px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  background-color: rgba(#000, 0.3);
+
+  &__inner {
+    box-sizing: border-box;
+    padding: 30px;
+    background-color: #fff;
+    max-width: 700px;
+    width: 100%;
+    border-radius: 20px;
+  }
+
+  //HEADER
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 5px;
+    border-bottom: 1px solid $color_gray;
+  }
+
+  &__title {
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 0.3px;
+    cursor: default;
+    color: $color_gray--dark;
+    user-select: none;
+    @include font_big;
+  }
+
+  &__button-close-title {
+    margin-left: 15px;
+    position: relative;
+    width: 24px;
+    height: 24px;
+
+    &:hover {
+      cursor: pointer;
+      animation-name: rotate_button_close;
+      animation-duration: 0.5s;
+
+      &::before,
+      &::after {
+        background-color: $color_red;
+      }
+    }
+  }
+
+  &__button-close-title::after,
+  &__button-close-title::before {
+    position: absolute;
+    top: 10px;
+    right: 0;
+    display: block;
+    width: 24px;
+    border-radius: 2px;
+    height: 4px;
+    background-color: $color_gray--dark;
+    transition: background-color $transition_duration_long $transition_easing;
+  }
+
+  &__button-close-title {
+    &::after {
+      content: '';
+      transform: rotate(45deg);
+    }
+
+    &::before {
+      content: '';
+      transform: rotate(-45deg);
+    }
+  }
+
+  //BODY
+  &__body {
+    padding: 5px 0;
+  }
+
+  //FOOTER
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-top: 5px;
+    border-top: 1px solid $color_gray;
+  }
+}

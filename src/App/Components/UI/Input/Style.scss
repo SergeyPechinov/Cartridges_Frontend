@@ -1,0 +1,41 @@
+@import "./../../../../Constants/Styleshets/main";
+
+.input {
+  box-sizing: border-box;
+  padding: 0 10px;
+  height: 40px;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid $color_black;
+
+  &:focus,
+  &--complete {
+    border: 1px solid $color_green;
+  }
+
+  &--error {
+    border: 1px solid $color_red;
+  }
+}
+
+//убирает кнопку крест и спиннер по цифрам
+.input[type=date]::-webkit-inner-spin-button,
+.input[type=date]::-webkit-clear-button {
+  -webkit-appearance: none;
+  display: none;
+}
+
+//меняет картинку на выпадашке
+.input[type=date]::-webkit-calendar-picker-indicator {
+  background-image: url("./../../../../Img/trangle.svg");
+  background-repeat: no-repeat;
+  width: 12px;
+  height: 8px;
+  background-position: center;
+  background-size: contain;
+
+  &:hover {
+    background-color: inherit;
+    cursor: pointer;
+  }
+}

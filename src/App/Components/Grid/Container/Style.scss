@@ -1,0 +1,15 @@
+@import "../../../../Constants/Styleshets/main";
+
+.container {
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 0 20px;
+
+  @include media_interval($media768, $media1024) {
+    padding: 0 15px;
+  }
+
+  @include media_interval(0, $media768) {
+    padding: 0 10px;
+  }
+}

@@ -1,0 +1,77 @@
+@import "./../../../Constants/Styleshets/main";
+
+$this_media494: 494px;
+
+.auth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  &__inner {
+    max-width: 454px;
+    width: 100%;
+
+    @media (max-width: $this_media494) {
+      max-width: none;
+    }
+  }
+
+  &__title {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-transform: capitalize;
+    text-align: center;
+  }
+
+  &__error {
+    display: block;
+    margin-bottom: 5px;
+    color: $color_red;
+    font-family: $font_roboto;
+    @include font_small;
+  }
+
+  &__inputs {
+    width: 100%;
+  }
+
+  &__input {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  &__buttons {
+    display: flex;
+    width: 100%;
+
+    @media (max-width: $this_media494) {
+      flex-direction: column;
+    }
+  }
+
+  &__button {
+    width: 50%;
+
+    @media (max-width: $this_media494) {
+      width: 100%;
+    }
+
+    &:first-child {
+      margin-right: 10px;
+
+      @media (max-width: $this_media494) {
+        margin: 0 0 10px 0;
+      }
+    }
+
+    &:last-child {
+      margin-left: 10px;
+
+      @media (max-width: $this_media494) {
+        margin-left: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+@import "./../../../Constants/Styleshets/main";
+
+.header {
+  background-color: $color_blue;
+  position: fixed;
+  width: 100%;
+
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: $height_header_1024;
+
+    @media (max-width: $media1024) {
+      min-height: $height_header_768;
+    }
+  }
+}

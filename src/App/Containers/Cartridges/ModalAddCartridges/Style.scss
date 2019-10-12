@@ -1,0 +1,45 @@
+@import "./../../../../Constants/Styleshets/main";
+
+$indentation__row: 10px;
+
+.modal-cartridges {
+
+  &__rows {
+    margin-top: -$indentation__row;
+    margin-bottom: -$indentation__row;
+
+    @include media_interval(0, $media500) {
+      margin: 0;
+    }
+  }
+
+  &__row {
+    padding-top: $indentation__row;
+    padding-bottom: $indentation__row;
+
+    @include media_interval(0, $media500) {
+      padding: 0;
+    }
+  }
+
+  &__row-2 {
+    margin-left: -$indentation__row;
+    margin-right: -$indentation__row;
+
+    @include media_interval(0, $media500) {
+      flex-direction: column;
+      margin: 0;
+    }
+
+    &-item {
+      padding-left: $indentation__row;
+      padding-right: $indentation__row;
+      max-width: 50%;
+
+      @include media_interval(0, $media500) {
+        max-width: 100%;
+        padding: 5px 0;
+      }
+    }
+  }
+}

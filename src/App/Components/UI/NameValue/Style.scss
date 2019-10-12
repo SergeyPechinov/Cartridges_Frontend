@@ -1,0 +1,15 @@
+.name-value {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  &__name {
+    font-weight: bold;
+    padding-bottom: 7px;
+  }
+
+  &__value {
+
+  }
+}

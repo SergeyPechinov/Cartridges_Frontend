@@ -1,0 +1,26 @@
+@import "./../Constants/Styleshets/main";
+
+a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: opacity 0.3s ease-in-out;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+* {
+  @include font_default;
+}
+
+.main {
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  padding: $height_header_1024 0 $height_footer_1024;
+
+  @media (max-width: $media1024) {
+    padding: $height_header_768 0 $height_footer_768;
+  }
+}
