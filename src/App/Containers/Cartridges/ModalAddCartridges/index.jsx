@@ -7,6 +7,7 @@ import DropdownTitle from "../../../Components/UI/DropownTitle";
 import NameValue from "../../../Components/UI/NameValue";
 import Hr from "../../../Components/UI/Hr";
 import {statusesGetStart} from "./../../../../Actions/statuses"
+import {workersGetStart} from "../../../../Actions/workers";
 import {connect} from "react-redux";
 
 class ModalAddCartridges extends Component {
@@ -14,24 +15,11 @@ class ModalAddCartridges extends Component {
 	state = {
 		dateLastFill: '',
 		datePurchase: '',
-		clerks: [
-			{
-				id: 1,
-        name: 'Петров Дмитрий Андреевич'
-			},
-			{
-				id: 2,
-        name: 'Непетров Недмитрий Неандреевич'
-			},
-			{
-				id: 3,
-        name: 'Дапетров Дадмитрий Даандреевич'
-			},
-		]
 	};
 
 	componentDidMount() {
 		this.props.statusesGetStart(this.props.authToken);
+		this.props.workersGetStart(this.props.authToken);
 	}
 
 	render() {
@@ -92,7 +80,7 @@ class ModalAddCartridges extends Component {
 								classWrapper="modal-cartridges__row"
 								title="Работник"
 								defaultValue="Работник"
-								list={this.state.clerks}/>
+								list={this.props.workersList}/>
             <Row class="modal-cartridges__row modal-cartridges__row-2">
               <NameValue
                 classWrapper="modal-cartridges__row-2-item"
@@ -114,10 +102,12 @@ class ModalAddCartridges extends Component {
 const mapStateToProps = state => ({
 	authToken: state.auth.tokenAuth,
 	statusesList: state.statuses.list,
+	workersList: state.workers.list,
 });
 
 const mapDispatchToProps = {
 	statusesGetStart,
+	workersGetStart,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ModalAddCartridges);
