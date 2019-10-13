@@ -5,7 +5,7 @@ class Dropdown extends Component {
 
 	state = {
 		statusOpen: false,
-		idOption: null,
+		idOption: -1,
 		title: '',
 	};
 
@@ -20,6 +20,10 @@ class Dropdown extends Component {
 	};
 
 	closeDropdown = event => {
+		if (typeof this.props.onSelect === 'function') {
+			this.props.onSelect(event.target.dataset.id);
+		}
+
 		this.setState({
 			statusOpen: false,
 			idOption: event.target.dataset.id,
@@ -28,9 +32,13 @@ class Dropdown extends Component {
 	};
 
 	closeDropdownDefault = () => {
+		if (typeof this.props.onSelect === 'function') {
+			this.props.onSelect(-1);
+		}
+
 		this.setState({
 			statusOpen: false,
-			idOption: null,
+			idOption: -1,
 			title: '',
 		})
 	};
@@ -87,7 +95,7 @@ class Dropdown extends Component {
 							className={`dropdown__body`}>
 						<div
 								className={`dropdown__options`}>
-							{this.state.idOption === null ? null :
+							{this.state.idOption === -1 ? null :
 									<span
 											onClick={this.closeDropdownDefault}
 											className={`

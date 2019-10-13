@@ -35,6 +35,7 @@ $indentation__row: 10px;
       padding-left: $indentation__row;
       padding-right: $indentation__row;
       max-width: 50%;
+      width: 100%;
 
       @include media_interval(0, $media500) {
         max-width: 100%;
