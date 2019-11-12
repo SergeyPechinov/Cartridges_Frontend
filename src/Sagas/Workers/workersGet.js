@@ -24,6 +24,8 @@ function* sagaWorkersGet(data) {
 		result[i].name += ` ${result[i].surname}`;
 	}
 	yield put(workersGet(result));
+
+	console.log(122312312312312312312);
 }
 
 export function* workersGetSaga() {

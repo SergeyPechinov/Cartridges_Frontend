@@ -1,7 +1,11 @@
 .cartridges {
   padding: 20px 0;
 
-  &__buttons {
-    margin-bottom: 20px;
+  &__settings-buttons {
+    margin: 0 -5px 20px -5px;
+  }
+
+  &__settings-button {
+    margin: 0 5px;
   }
 }

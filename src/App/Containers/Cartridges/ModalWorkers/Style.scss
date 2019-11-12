@@ -1,0 +1,26 @@
+@import "../../../../Constants/Styleshets/const";
+
+.modal-workers {
+
+  &__row-add-button-wrapper {
+    margin-top: 10px;
+    box-sizing: border-box;
+    width: 50%;
+    padding: 0 5px;
+  }
+
+  &__row-add-button {
+    width: 100%;
+  }
+
+  &__row-add-inner {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -5px;
+  }
+
+  &__row-add-input {
+    width: 50%;
+    padding: 0 5px;
+  }
+}
