@@ -1,4 +1,5 @@
 @import "../../../../Constants/Styleshets/const";
+@import "../../../../Constants/Styleshets/mixins";
 
 .modal-workers {
 
@@ -22,5 +23,66 @@
   &__row-add-input {
     width: 50%;
     padding: 0 5px;
+  }
+
+  &__list {
+    margin-top: 10px;
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    transition: all $transition_duration $transition_easing;
+
+    &:first-child {
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+    }
+
+    &:last-child {
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+
+    &:nth-child(even) {
+      background-color: $color_gray--light;
+
+      &:hover {
+        background-color: #c7c7c7;
+      }
+    }
+
+    &:nth-child(odd) {
+      background-color: $color_gray;
+
+      &:hover {
+        background-color: #d2d1d1;
+      }
+    }
+  }
+
+  &-item-item {
+  }
+
+  &__name {
+    width: 40%;
+  }
+
+  &__position {
+    width: 40%;
+  }
+
+  &__del {
+    display: block;
+    width: 15px;
+    height: 15px;
+    background-image: url('../../../../Img/close.svg');
+    cursor: pointer;
+    transition: transform $transition_duration $transition_easing;
+
+    &:hover {
+      transform: rotate(90deg) scale(1.3);
+    }
   }
 }

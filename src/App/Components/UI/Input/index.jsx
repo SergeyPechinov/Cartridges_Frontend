@@ -10,6 +10,7 @@ class Input extends Component {
             defaultValue={this.props.defaultValue}
             onChange={this.props.onChange}
             type={this.props.type}
+            id={this.props.id}
             className={`
               input
               ${this.props.class ? this.props.class : ''}

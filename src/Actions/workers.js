@@ -11,3 +11,19 @@ export const workersGet = data => {
 		payload: data,
 	}
 };
+
+export const workersAddStart = (token, data) => {
+	return {
+		type: 'WORKERS_ADD_START',
+		token: token,
+		payload: data,
+	}
+};
+
+export const workersDelStart = (token, id) => {
+	return {
+		type: 'WORKERS_DEL_START',
+		token: token,
+		payload: id,
+	}
+};

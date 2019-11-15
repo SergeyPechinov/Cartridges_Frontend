@@ -9,7 +9,6 @@ export function workersReducer(state = initialState, action) {
 				...state,
 				list: action.payload,
 			};
-
 		default:
 			return state;
 	}
