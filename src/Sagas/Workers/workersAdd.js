@@ -5,7 +5,7 @@ import {workersGetStart} from "../../Actions/workers";
 
 const axiosWorkersAdd = (token, data) => {
 	return axios({
-				method: 'PUT',
+				method: 'POST',
 				url: `http://${mainStore.API_URL}/workers`,
 				headers: {
 					'Content-Type': 'application/json',

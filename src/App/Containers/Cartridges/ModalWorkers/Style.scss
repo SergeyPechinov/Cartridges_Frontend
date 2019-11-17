@@ -3,36 +3,11 @@
 
 .modal-workers {
 
-  &__row-add-button-wrapper {
-    margin-top: 10px;
-    box-sizing: border-box;
-    width: 50%;
-    padding: 0 5px;
-  }
-
-  &__row-add-button {
-    width: 100%;
-  }
-
-  &__row-add-inner {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0 -5px;
-  }
-
-  &__row-add-input {
-    width: 50%;
-    padding: 0 5px;
-  }
-
   &__list {
     margin-top: 10px;
   }
 
-  &__item {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
+  &__item-wrapper {
     transition: all $transition_duration $transition_easing;
 
     &:first-child {
@@ -62,27 +37,150 @@
     }
   }
 
-  &-item-item {
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+
+    @include media_interval(0, $media768) {
+      flex-wrap: wrap;
+      align-items: flex-end;
+      padding: 10px 0 0 10px;
+    }
   }
 
-  &__name {
-    width: 40%;
+  &__name,
+  &__position {
+    width: 37%;
+    box-sizing: border-box;
+    padding-right: 10px;
+
+    @include media_interval($media500, $media768) {
+      width: 50%;
+    }
+
+    @include media_interval(0, $media500) {
+      width: 100%;
+    }
   }
 
   &__position {
-    width: 40%;
+    @include media_interval(0, $media500) {
+      margin-top: 10px;
+    }
+  }
+
+  &__cabinet {
+    width: 8%;
+
+    @include media_interval(0, $media768) {
+      padding: 10px 0 10px 0;
+      width: 50%;
+    }
+  }
+
+  &__cabinet-title {
+    font-weight: 500;
+    @include media_interval($media768, 0) {
+      display: none;
+    }
+  }
+
+  &__edit {
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+
+    @include media_interval(0, $media768) {
+      padding: 10px 0 10px 0;
+      width: 25%;
+      transition: background-color $transition_duration $transition_easing;
+    }
+
+    &:hover {
+      .modal-workers__edit-img {
+        transform: scale(1.5);
+      }
+    }
+  }
+
+  &__edit-img {
+    display: block;
+    width: 15px;
+    height: 15px;
+    background-image: url('../../../../Img/change.svg');
+    transition: transform $transition_duration $transition_easing;
+    background-size: cover;
+    transform: scale(1.2);
+
+    @include media_interval(0, $media768) {
+      margin: 0 auto;
+    }
   }
 
   &__del {
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+
+    @include media_interval(0, $media768) {
+      padding: 10px 0 10px 0;
+      width: 25%;
+      transition: background-color $transition_duration $transition_easing;
+    }
+
+    &:hover {
+      .modal-workers__del-img {
+        transform: rotate(90deg) scale(1.3);
+      }
+    }
+  }
+
+  &__del-img {
     display: block;
     width: 15px;
     height: 15px;
     background-image: url('../../../../Img/close.svg');
-    cursor: pointer;
     transition: transform $transition_duration $transition_easing;
 
-    &:hover {
-      transform: rotate(90deg) scale(1.3);
+    @include media_interval(0, $media768) {
+      margin: 0 auto;
     }
+  }
+}
+
+.add-edit-worker {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -5px;
+  padding: 10px 0;
+
+  &--edit {
+    padding: 10px;
+  }
+
+  &__input {
+    width: 50%;
+    padding: 0 5px;
+
+    @include media_interval(0, $media500) {
+      width: 100%;
+    }
+  }
+
+  &__button-wrapper {
+    margin-top: 10px;
+    box-sizing: border-box;
+    width: 50%;
+    padding: 0 5px;
+
+    @include media_interval(0, $media500) {
+      width: 100%;
+    }
+  }
+
+  &__button {
+    width: 100%;
   }
 }

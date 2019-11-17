@@ -59,7 +59,7 @@ class Dropdown extends Component {
 								data-id={item.id}
 								className={`dropdown__option`}
 								key={item.id}>
-							{item.name}
+							{item.listName}
 						</span>
 				) : null;
 

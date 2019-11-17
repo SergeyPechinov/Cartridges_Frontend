@@ -27,3 +27,11 @@ export const workersDelStart = (token, id) => {
 		payload: id,
 	}
 };
+
+export const workersEditStart = (token, data) => {
+	return {
+		type: 'WORKERS_EDIT_START',
+		token: token,
+		payload: data,
+	}
+};

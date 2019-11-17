@@ -5,7 +5,7 @@ import mainStore from './../../forStartConstants';
 
 const axiosWorkersGet = (token) => {
 	return axios({
-				method: 'POST',
+				method: 'GET',
 				url: `http://${mainStore.API_URL}/workers/`,
 				headers: {
 					'Content-Type': 'application/json',
@@ -21,7 +21,7 @@ function* sagaWorkersGet(data) {
 
 	const resultLength = result.length;
 	for (let i = 0; i < resultLength; i++) {
-		result[i].name += ` ${result[i].surname}`;
+		result[i].listName = ` ${result[i].surname} ${result[i].name}`;
 	}
 	yield put(workersGet(result));
 }
