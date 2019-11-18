@@ -11,3 +11,11 @@ export const statusesGet = data => {
     payload: data,
   }
 };
+
+export const statusesAddStart = (token, data) => {
+  return {
+    type: 'STATUSES_ADD_START',
+    token: token,
+    payload: data,
+  }
+};

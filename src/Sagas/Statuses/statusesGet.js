@@ -5,7 +5,7 @@ import mainStore from './../../forStartConstants';
 
 const axiosStatusesGet = (token) => {
   return axios({
-        method: 'POST',
+        method: 'GET',
         url: `http://${mainStore.API_URL}/statuses/`,
         headers: {
           'Content-Type': 'application/json',

@@ -10,7 +10,7 @@ import {inputError} from "../../../CommonFunc/inputError";
 
 class ModalWorkers extends Component {
 
-	state = {
+state = {
 		statusAddRow: false,
 
 		add_worker_surname: '',

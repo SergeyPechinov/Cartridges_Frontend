@@ -10,8 +10,8 @@ import Row from "../../Components/Grid/Row";
 import Button from "../../Components/UI/Button";
 import ModalAddCartridges from "./ModalAddCartridges";
 import ModalWorkers from "./ModalWorkers";
-import {stateModalAddCartridges} from "./functions";
-import {stateModalWorkers} from "./functions";
+import ModalStatuses from "./ModalStatuses";
+import {stateModalAddCartridges, stateModalStatuses, stateModalWorkers} from "./functions";
 
 
 class Cartridges extends Component {
@@ -19,6 +19,7 @@ class Cartridges extends Component {
 	state = {
 		statusModalAddCartridges: false,
 		statusModalWorkers: false,
+		statusModalStatuses: false,
 	};
 
 	componentDidMount() {
@@ -73,6 +74,20 @@ class Cartridges extends Component {
 								:
 								null
 					}
+					{/*модальное окно статусов*/}
+					{
+						this.state.statusModalStatuses
+								?
+								<ModalStatuses
+										funcModalClose={
+											event => {
+												stateModalStatuses(event, this, false);
+											}
+										}
+								/>
+								:
+								null
+					}
 
 					<Container>
 						<Row class="cartridges__settings-buttons">
@@ -90,6 +105,13 @@ class Cartridges extends Component {
                         stateModalWorkers(event, this);
 										}
 									}>Работники</Button>
+							<Button
+									class="cartridges__settings-button button--blue"
+									onClick={
+										event => {
+                        stateModalStatuses(event, this);
+										}
+									}>Статусы</Button>
 						</Row>
 						<CartridgesList>
 							{/*Заголовки таблицы*/}

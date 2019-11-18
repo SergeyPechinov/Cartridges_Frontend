@@ -1,0 +1,22 @@
+.modal-statuses {
+  &__add-btn-show {
+    width: 100%;
+  }
+}
+
+.edit-add-status {
+  &__buttons {
+    display: flex;
+    margin: 10px -5px 0;
+  }
+
+  &__button-wrapper {
+    box-sizing: border-box;
+    padding: 0 5px;
+    width: 50%;
+  }
+
+  &__button {
+    width: 100%;
+  }
+}
