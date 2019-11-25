@@ -60,14 +60,14 @@ class ModalStatuses extends Component {
 
 	openEditAddBlock = (id, value) => {
 		let
-				editBlock = document.getElementById(`js-edit-add-block-status-${id}`),
+				editAddBlock = document.getElementById(`js-edit-add-block-status-${id}`),
 				classNameHidden = `dnone`;
 
-		if (editBlock.classList.contains(classNameHidden)) {
-			editBlock.classList.remove(classNameHidden);
+		if (editAddBlock.classList.contains(classNameHidden)) {
+			editAddBlock.classList.remove(classNameHidden);
 		} else {
 			document.getElementById(`js-edit-add-block-status-input-${id}`).value = value;
-			editBlock.classList.add(classNameHidden);
+			editAddBlock.classList.add(classNameHidden);
 		}
 
 		if (id === 0) {
@@ -78,12 +78,12 @@ class ModalStatuses extends Component {
 
 	closeEditAddBlock = (id, value) => {
 		let
-				editBlock = document.getElementById(`js-edit-add-block-status-${id}`),
-				editInput = document.getElementById(`js-edit-add-block-status-input-${id}`),
+				editAddBlock = document.getElementById(`js-edit-add-block-status-${id}`),
+				editAddInput = document.getElementById(`js-edit-add-block-status-input-${id}`),
 				classNameHidden = `dnone`;
 
-		editInput.value = value;
-		editBlock.classList.add(classNameHidden);
+		editAddInput.value = value;
+		editAddBlock.classList.add(classNameHidden);
 		this.editAddStatusError(id);
 
 		if (id === 0) {
