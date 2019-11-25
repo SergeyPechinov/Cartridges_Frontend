@@ -1,6 +1,6 @@
 import {takeLatest, put} from 'redux-saga/effects';
 import axios from 'axios';
-import {statusesGetStart, statusesAddError, statusesAddErrorClear} from './../../Actions/statuses';
+import {statusesGetStart} from './../../Actions/statuses';
 import mainStore from './../../forStartConstants';
 
 const axiosStatusesEdit = (token, data) => {

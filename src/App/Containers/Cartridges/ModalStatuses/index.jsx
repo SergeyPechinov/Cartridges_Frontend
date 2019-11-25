@@ -3,67 +3,36 @@ import './Style.scss';
 import Modal from "../../../Components/UI/Modal";
 import Button from "../../../Components/UI/Button";
 import InputTitle from "../../../Components/UI/InputTitle";
-import {inputError} from "../../../CommonFunc/inputError";
 import {connect} from "react-redux";
 import {
 	statusesGetStart,
 	statusesAddStart,
-	statusesAddError,
-	statusesAddErrorClear,
 	statusesEditStart,
 	statusesDelStart,
 } from "../../../../Actions/statuses";
 
 class ModalStatuses extends Component {
-
-	state = {
-		statusAddRow: false,
-
-		valueAddStatus: '',
-	};
-
 	componentDidMount() {
 		this.props.statusesGetStart(this.props.authToken);
 	}
 
-	showAddRow = () => {
-		this.setState({
-			statusAddRow: true,
-
-			valueAddStatus: '',
-		});
-	};
-
-	closeAddRow = () => {
-		this.setState({
-			statusAddRow: false,
-			valueAddStatus: '',
-		});
-
-		this.props.statusesAddErrorClear();
-	};
-
-	handleInputAddStatus = event => {
-		this.setState({
-			valueAddStatus: event.target.value,
-		});
-
-		let input = document.getElementById('js-add-status-input');
-		inputError(event, input, 2);
-	};
-
 	addStatus = () => {
-		const value = this.state.valueAddStatus;
+		let
+				value = document.getElementById(`js-edit-add-block-status-input-0`).value,
+				data = {
+					value,
+				};
 
 		if (value.length >= 2) {
-			this.props.statusesAddStart(this.props.authToken, value, this.closeAddRow);
+			this.props.statusesAddStart(this.props.authToken, data, this.closeEditAddBlock, this.editAddStatusError);
 		} else {
-			this.props.statusesAddError('Мнинимум 2 символа!');
+			this.editAddStatusError(0, 'Минимум 2 символа!');
 		}
 	};
 
 	editStatus = id => {
 		let value = document.getElementById(`js-edit-add-block-status-input-${id}`).value;
+
 		if (value.length >= 2) {
 			const data = {
 				id,
@@ -89,7 +58,7 @@ class ModalStatuses extends Component {
 		}
 	};
 
-	openEditAddBlock = (id, value = '') => {
+	openEditAddBlock = (id, value) => {
 		let
 				editBlock = document.getElementById(`js-edit-add-block-status-${id}`),
 				classNameHidden = `dnone`;
@@ -101,16 +70,26 @@ class ModalStatuses extends Component {
 			editBlock.classList.add(classNameHidden);
 		}
 
+		if (id === 0) {
+			let btnOpenAddBlock = document.getElementById(`js-edit-add-block-status-btnOpenAddBlock`);
+			btnOpenAddBlock.classList.add(classNameHidden);
+		}
 	};
 
 	closeEditAddBlock = (id, value) => {
 		let
 				editBlock = document.getElementById(`js-edit-add-block-status-${id}`),
-				editInput = document.getElementById(`js-edit-add-block-status-input-${id}`);
+				editInput = document.getElementById(`js-edit-add-block-status-input-${id}`),
+				classNameHidden = `dnone`;
 
 		editInput.value = value;
-		editBlock.classList.add('dnone');
+		editBlock.classList.add(classNameHidden);
 		this.editAddStatusError(id);
+
+		if (id === 0) {
+			let btnOpenAddBlock = document.getElementById(`js-edit-add-block-status-btnOpenAddBlock`);
+			btnOpenAddBlock.classList.remove(classNameHidden);
+		}
 	};
 
 	delStatus = id => {
@@ -118,7 +97,6 @@ class ModalStatuses extends Component {
 	};
 
 	render() {
-
 		const statusesList = this.props.statusesList ? (
 				<ul className={'modal-statuses__list'}>
 					{
@@ -190,42 +168,42 @@ class ModalStatuses extends Component {
 
 					<div className={'modal-statuses__inner'}>
 						<div className="modal-statuses__add">
-							{this.state.statusAddRow ?
-									<div className={`edit-add-status`}>
-										<div className="edit-add-status__input-wrapper">
-											<InputTitle
-													onChange={this.handleInputAddStatus}
-													id={'js-add-status-input'}
-													classWrapper={'edit-add-status__input-name'}
-													class={'input--error'}
-													title={'Название сервиса'}
-													defaultValue={this.state.valueAddStatus}
-													maxLength={30}/>
-											{this.props.statusesAddErrorMessage ?
-													<p className="edit-add-status__input-error">
-														{this.props.statusesAddErrorMessage}
-													</p> : null}
-										</div>
-										<div className="edit-add-status__buttons">
-											<div className="edit-add-status__button-wrapper">
-												<Button
-														onClick={this.addStatus}
-														class={'edit-add-status__button button--green'}>
-													Добавить</Button>
-											</div>
-											<div className="edit-add-status__button-wrapper">
-												<Button
-														onClick={this.closeAddRow}
-														class={'edit-add-status__button button--red'}>
-													Отмена</Button>
-											</div>
-										</div>
+							<div className={`edit-add-status dnone`} id={`js-edit-add-block-status-0`}>
+								<div className="edit-add-status__input-wrapper">
+									<InputTitle
+											id={`js-edit-add-block-status-input-0`}
+											classWrapper={'edit-add-status__input-name'}
+											class={'input--error'}
+											title={'Название сервиса'}
+											maxLength={30}/>
+									<p
+											id={`js-edit-add-block-status-error-0`}
+											className="edit-add-status__input-error"/>
+								</div>
+								<div className="edit-add-status__buttons">
+									<div className="edit-add-status__button-wrapper">
+										<Button
+												onClick={this.addStatus}
+												class={'edit-add-status__button button--green'}>
+											Добавить</Button>
 									</div>
-									:
-									<Button
-											onClick={this.showAddRow}
-											class={'modal-statuses__add-btn-show button--no-style color-blue'}>Добавить</Button>
-							}
+									<div className="edit-add-status__button-wrapper">
+										<Button
+												onClick={() => {
+													this.closeEditAddBlock(0, '');
+												}}
+												class={'edit-add-status__button button--red'}>
+											Отмена</Button>
+									</div>
+								</div>
+							</div>
+							<Button
+									onClick={() => {
+										this.openEditAddBlock(0, '');
+									}}
+									id={`js-edit-add-block-status-btnOpenAddBlock`}
+									class={'modal-statuses__add-btn-show button--no-style color-blue'}>Добавить</Button>
+
 						</div>
 						{statusesList}
 					</div>
@@ -237,14 +215,11 @@ class ModalStatuses extends Component {
 const mapStateToProps = state => ({
 	authToken: state.auth.tokenAuth,
 	statusesList: state.statuses.list,
-	statusesAddErrorMessage: state.statuses.errorAddMessage,
 });
 
 const mapDispatchToProps = {
 	statusesGetStart,
 	statusesAddStart,
-	statusesAddError,
-	statusesAddErrorClear,
 	statusesEditStart,
 	statusesDelStart,
 };

@@ -8,4 +8,5 @@ export default [
 		call(statusesGetSaga),
 		call(statusesAddSaga),
 		call(statusesEditSaga),
-		call(statusesDelSaga)];
+		call(statusesDelSaga),
+];

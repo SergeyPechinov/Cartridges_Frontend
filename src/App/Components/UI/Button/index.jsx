@@ -7,6 +7,7 @@ class Button extends Component {
 				<button
 						type="button"
 						onClick={this.props.onClick}
+						id={this.props.id}
 						className={`
               button
               ${this.props.class ? this.props.class : ''}
