@@ -23,3 +23,18 @@
     @content;
   }
 }
+
+//TRANSITION
+@mixin transition($properties: all, $duration: $transition_duration, $easing: $transition_easing) {
+  $transitionList: '';
+
+  @each $property in $properties {
+    @if ($transitionList == '') {
+      $transitionList: $property + ' ' + $duration + ' ' + $easing;
+    } @else {
+      $transitionList: $transitionList + ', ' + $property + ' ' + $duration + ' ' + $easing;
+    }
+  };
+
+  transition: $transitionList;
+}
