@@ -1,5 +1,6 @@
 const initialState = {
   list: null,
+  errorAddMessage: '',
 };
 
 export function statusesReducer(state = initialState, action) {
@@ -8,6 +9,18 @@ export function statusesReducer(state = initialState, action) {
       return {
         ...state,
         list: action.payload,
+      };
+
+    case 'STATUSES_ADD_ERROR':
+      return {
+        ...state,
+        errorAddMessage: action.payload,
+      };
+
+    case 'STATUSES_ADD_ERROR_CLEAR':
+      return {
+        ...state,
+        errorAddMessage: '',
       };
 
     default:

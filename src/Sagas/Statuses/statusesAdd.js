@@ -1,6 +1,6 @@
 import {takeLatest, put} from 'redux-saga/effects';
 import axios from 'axios';
-import {statusesGetStart} from './../../Actions/statuses';
+import {statusesGetStart, statusesAddError, statusesAddErrorClear} from './../../Actions/statuses';
 import mainStore from './../../forStartConstants';
 
 const axiosStatusesAdd = (token, data) => {
@@ -18,11 +18,14 @@ const axiosStatusesAdd = (token, data) => {
 
 function* sagaStatusesAdd(data) {
 	try {
-		yield axiosStatusesAdd(data.token, {nameService: data.payload});
+		yield axiosStatusesAdd(data.token, {nameStatus: data.payload});
+		yield put(statusesGetStart(data.token));
+		yield put(statusesAddErrorClear());
+		data.closeFormAddStatus();
 	} catch (error) {
-		console.log(error.response.data.message);
+		const errorMessage = error.response.data.message;
+		yield put(statusesAddError(errorMessage));
 	}
-	yield put(statusesGetStart(data.token));
 }
 
 export function* statusesAddSaga() {

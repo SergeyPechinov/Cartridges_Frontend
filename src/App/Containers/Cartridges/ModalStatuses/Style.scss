@@ -1,10 +1,102 @@
+@import "./../../../../Constants/Styleshets/main";
+
 .modal-statuses {
   &__add-btn-show {
     width: 100%;
   }
+
+  &__list {
+    padding: 0;
+  }
+
+  &__item {
+    display: block;
+    padding: 10px;
+    transition: all $transition_duration $transition_easing;
+
+    &:first-child {
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+    }
+
+    &:last-child {
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+
+    &:nth-child(even) {
+      background-color: $color_gray--light;
+
+      &:hover {
+        background-color: #c7c7c7;
+      }
+    }
+
+    &:nth-child(odd) {
+      background-color: $color_gray;
+
+      &:hover {
+        background-color: #d2d1d1;
+      }
+    }
+  }
+
+  &__item-inner {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  &__item-name {
+    margin: 0;
+  }
+
+  &__item-btn-wrapper {
+    display: flex;
+    margin: 0 -5px;
+  }
+
+  &__item-btn-open-edit,
+  &__item-btn-del {
+    margin: 0 5px;
+    display: block;
+    width: 15px;
+    height: 15px;
+    background-size: cover;
+    cursor: pointer;
+    @include transition(transform);
+  }
+
+  &__item-btn-open-edit {
+    background-image: url('../../../../Img/change.svg');
+    transform: scale(1.2);
+
+    &:hover {
+      transform: scale(1.5);
+    }
+  }
+
+  &__item-btn-del {
+    background-image: url('../../../../Img/close.svg');
+
+    &:hover {
+      transform: rotate(90deg) scale(1.3);
+    }
+  }
 }
 
 .edit-add-status {
+  &__input-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__input-error {
+    margin: 5px 0 0 0;
+    @include font_size_small;
+    color: $color-red;
+  }
+
   &__buttons {
     display: flex;
     margin: 10px -5px 0;
