@@ -20,7 +20,7 @@ function* sagaStatusesEdit(data) {
 	try {
 		yield axiosStatusesEdit(data.token, data.payload);
 		yield put(statusesGetStart(data.token));
-		data.closeFormEditAddStatus(data.payload.id, data.payload.name);
+		data.closeEditAddBlockStatus(data.payload.id, data.payload.name);
 		data.editAddStatusError(data.payload.id);
 	} catch (error) {
 		const errorMessage = error.response.data.message;

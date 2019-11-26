@@ -21,7 +21,7 @@ function* sagaStatusesAdd(data) {
 		yield axiosStatusesAdd(data.token, data.payload);
 		yield put(statusesGetStart(data.token));
 		data.editAddStatusError(0, '');
-		data.closeEditAddBlock(0, '');
+		data.closeEditAddBlockStatus(0, '');
 	} catch (error) {
 		const errorMessage = error.response.data.message;
 		data.editAddStatusError(0, errorMessage);

@@ -12,21 +12,21 @@ export const statusesGet = data => {
 	}
 };
 
-export const statusesAddStart = (token, data, closeEditAddBlock, editAddStatusError) => {
+export const statusesAddStart = (token, data, closeEditAddBlockStatus, editAddStatusError) => {
 	return {
 		type: 'STATUSES_ADD_START',
 		token: token,
-		closeEditAddBlock,
+		closeEditAddBlockStatus,
 		editAddStatusError,
 		payload: data,
 	}
 };
 
-export const statusesEditStart = (token, data, closeFormEditAddStatus, editAddStatusError) => {
+export const statusesEditStart = (token, data, closeEditAddBlockStatus, editAddStatusError) => {
 	return {
 		type: 'STATUSES_EDIT_START',
 		token,
-		closeFormEditAddStatus,
+		closeEditAddBlockStatus,
 		editAddStatusError,
 		payload: data,
 	}

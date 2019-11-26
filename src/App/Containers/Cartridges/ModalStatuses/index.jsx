@@ -24,7 +24,7 @@ class ModalStatuses extends Component {
 				};
 
 		if (value.length >= 2) {
-			this.props.statusesAddStart(this.props.authToken, data, this.closeEditAddBlock, this.editAddStatusError);
+			this.props.statusesAddStart(this.props.authToken, data, this.closeEditAddBlockStatus, this.editAddStatusError);
 		} else {
 			this.editAddStatusError(0, 'Минимум 2 символа!');
 		}
@@ -38,7 +38,7 @@ class ModalStatuses extends Component {
 				id,
 				name: document.getElementById(`js-edit-add-block-status-input-${id}`).value,
 			};
-			this.props.statusesEditStart(this.props.authToken, data, this.closeEditAddBlock, this.editAddStatusError);
+			this.props.statusesEditStart(this.props.authToken, data, this.closeEditAddBlockStatus, this.editAddStatusError);
 		} else {
 			this.editAddStatusError(id, `Минимум 2 символа!`);
 		}
@@ -58,7 +58,7 @@ class ModalStatuses extends Component {
 		}
 	};
 
-	openEditAddBlock = (id, value) => {
+	openEditAddBlockStatus = (id, value) => {
 		let
 				editAddBlock = document.getElementById(`js-edit-add-block-status-${id}`),
 				classNameHidden = `dnone`;
@@ -76,7 +76,7 @@ class ModalStatuses extends Component {
 		}
 	};
 
-	closeEditAddBlock = (id, value) => {
+	closeEditAddBlockStatus = (id, value) => {
 		let
 				editAddBlock = document.getElementById(`js-edit-add-block-status-${id}`),
 				editAddInput = document.getElementById(`js-edit-add-block-status-input-${id}`),
@@ -110,7 +110,7 @@ class ModalStatuses extends Component {
 											<i
 													className="modal-statuses__item-btn-open-edit"
 													onClick={() => {
-														this.openEditAddBlock(item.id, item.name);
+														this.openEditAddBlockStatus(item.id, item.name);
 													}}
 											/>
 											<i
@@ -147,7 +147,7 @@ class ModalStatuses extends Component {
 											<div className="edit-add-status__button-wrapper">
 												<Button
 														onClick={() => {
-															this.closeEditAddBlock(item.id, item.name);
+															this.closeEditAddBlockStatus(item.id, item.name);
 														}}
 														class={'edit-add-status__button button--red'}>
 													Отмена</Button>
@@ -190,7 +190,7 @@ class ModalStatuses extends Component {
 									<div className="edit-add-status__button-wrapper">
 										<Button
 												onClick={() => {
-													this.closeEditAddBlock(0, '');
+													this.closeEditAddBlockStatus(0, '');
 												}}
 												class={'edit-add-status__button button--red'}>
 											Отмена</Button>
@@ -199,7 +199,7 @@ class ModalStatuses extends Component {
 							</div>
 							<Button
 									onClick={() => {
-										this.openEditAddBlock(0, '');
+										this.openEditAddBlockStatus(0, '');
 									}}
 									id={`js-edit-add-block-status-btnOpenAddBlock`}
 									class={'modal-statuses__add-btn-show button--no-style color-blue'}>Добавить</Button>
