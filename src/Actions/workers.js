@@ -12,11 +12,13 @@ export const workersGet = data => {
 	}
 };
 
-export const workersAddStart = (token, data) => {
+export const workersAddStart = (token, data, openCloseEditAddBlockWorker, addDelErrorAll) => {
 	return {
 		type: 'WORKERS_ADD_START',
 		token: token,
 		payload: data,
+		openCloseEditAddBlockWorker,
+		addDelErrorAll,
 	}
 };
 

@@ -17,8 +17,20 @@ const axiosWorkersAdd = (token, data) => {
 };
 
 function* sagaWorkersAdd(data) {
-	yield axiosWorkersAdd(data.token, data.payload);
-	yield put(workersGetStart(data.token));
+	try {
+		yield axiosWorkersAdd(data.token, data.payload);
+		data.openCloseEditAddBlockWorker(0);
+		data.addDelErrorAll(0);
+		yield put(workersGetStart(data.token));
+	} catch(error) {
+		const errorMessages = error.response.data.message;
+		data.addDelErrorAll(0, errorMessages);
+	}
+
+	// console.log(data.token);
+	// console.log(data.payload);
+	// yield axiosWorkersAdd(data.token, data.payload);
+	// yield put(workersGetStart(data.token));
 }
 
 export function* workersAddSaga() {
