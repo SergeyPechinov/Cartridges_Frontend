@@ -27,16 +27,17 @@ class ModalWorkers extends Component {
 				cabinet: inputCabinet.value,
 			};
 
-			actionEdit ? this.editWorker(values) : this.addWorker(values);
+			actionEdit ? this.editWorker(id, values) : this.addWorker(values);
 		}
 	};
 
 	addWorker = values => {
-		this.props.workersAddStart(this.props.authToken, values, this.openCloseEditAddBlockWorker, this.addDelErrorAll);
+		this.props.workersAddStart(this.props.authToken, values, this.openCloseEditAddBlockWorker, this.addDelErrorAll, this.addCommonError);
 	};
 
-	editWorker = values => {
-		console.log('edit');
+	editWorker = (id, values) => {
+		values.id = id;
+		this.props.workersEditStart(this.props.authToken, values, this.openCloseEditAddBlockWorker, this.addDelErrorAll, this.addCommonError);
 	};
 
 	editAddErrors = (id) => {
@@ -78,12 +79,17 @@ class ModalWorkers extends Component {
 		document.getElementById(elName).textContent = message;
 	};
 
+	addCommonError = (id, message) => {
+		this.addDelError(`js-edit-add-block-worker-error-common-${id}`, message);
+	};
+
 	addDelErrorAll = (id, values = false) => {
 		if (values === false) {
 			this.addDelError(`js-edit-add-block-worker-error-surname-${id}`);
 			this.addDelError(`js-edit-add-block-worker-error-name-${id}`);
 			this.addDelError(`js-edit-add-block-worker-error-position-${id}`);
 			this.addDelError(`js-edit-add-block-worker-error-cabinet-${id}`);
+			this.addDelError(`js-edit-add-block-worker-error-common-${id}`);
 		} else {
 			this.addDelError(`js-edit-add-block-worker-error-surname-${id}`, values.surname);
 			this.addDelError(`js-edit-add-block-worker-error-name-${id}`, values.name);
@@ -133,6 +139,10 @@ class ModalWorkers extends Component {
 		}
 	};
 
+	delWorker = id => {
+		this.props.workersDelStart(this.props.authToken, id);
+	};
+
 	render() {
 		const workersList = this.props.workersList ? (this.props.workersList.map(item =>
 				<div
@@ -165,7 +175,7 @@ class ModalWorkers extends Component {
 						</div>
 						<div
 								onDoubleClick={() => {
-									// this.delWorker(item.id)
+									this.delWorker(item.id)
 								}}
 								className={'modal-workers__item-item modal-workers__del'}>
 							<i className={'modal-workers__del-img'}/>
@@ -174,6 +184,9 @@ class ModalWorkers extends Component {
 					<div
 							id={`js-edit-add-block-worker-${item.id}`}
 							className="add-edit-worker add-edit-worker--edit dnone">
+						<p
+								id={`js-edit-add-block-worker-error-common-${item.id}`}
+								className="add-edit-worker__common-error"/>
 						<div className="add-edit-worker__input-wrapper">
 							<InputTitle
 									id={`js-edit-add-block-worker-input-surname-${item.id}`}
@@ -221,7 +234,7 @@ class ModalWorkers extends Component {
 						<div className="add-edit-worker__button-wrapper">
 							<Button
 									onClick={() => {
-										// this.changeWorker(item.id)
+										this.editAddWorker(item.id, true);
 									}}
 									class={'add-edit-worker__button button--green'}>Изменить</Button>
 						</div>
@@ -253,6 +266,9 @@ class ModalWorkers extends Component {
 						<div
 								id={`js-edit-add-block-worker-0`}
 								className="add-edit-worker dnone">
+							<p
+									id={`js-edit-add-block-worker-error-common-0`}
+									className="add-edit-worker__common-error"/>
 							<div className="add-edit-worker__input-wrapper">
 								<InputTitle
 										id={`js-edit-add-block-worker-input-surname-0`}

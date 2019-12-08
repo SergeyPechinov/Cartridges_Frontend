@@ -21,7 +21,8 @@ function* sagaStatusesDel(data) {
 		yield axiosStatusesDel(data.token, {id: data.payload});
 		yield put(statusesGetStart(data.token));
 	} catch (error) {
-		//ДОПИЛИТЬ!!!!!!!!
+		const errorMessages = error.response.data.message;
+		alert(errorMessages);
 	}
 }
 

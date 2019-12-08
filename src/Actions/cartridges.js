@@ -12,10 +12,11 @@ export const cartridgesGet = data => {
   }
 };
 
-export const cartridgesAdd = (token, data) => {
+export const cartridgesAdd = (token, data, addDelError) => {
   return {
     type: 'CARTRIDGES_ADD',
     token: token,
     payload: data,
+    addDelError,
   }
 };

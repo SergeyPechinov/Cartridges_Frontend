@@ -11,7 +11,7 @@ const axiosWorkersAdd = (token, data) => {
 					'Content-Type': 'application/json',
 					'Authorization': `Bearer ${token}`,
 				},
-				data: data,
+				data,
 			}
 	)
 };
@@ -22,15 +22,15 @@ function* sagaWorkersAdd(data) {
 		data.openCloseEditAddBlockWorker(0);
 		data.addDelErrorAll(0);
 		yield put(workersGetStart(data.token));
-	} catch(error) {
+	} catch (error) {
 		const errorMessages = error.response.data.message;
-		data.addDelErrorAll(0, errorMessages);
-	}
 
-	// console.log(data.token);
-	// console.log(data.payload);
-	// yield axiosWorkersAdd(data.token, data.payload);
-	// yield put(workersGetStart(data.token));
+		if (typeof errorMessages === "string") {
+			data.addCommonError(0, errorMessages);
+		} else if (typeof errorMessages === "object") {
+			data.addDelErrorAll(0, errorMessages);
+		}
+	}
 }
 
 export function* workersAddSaga() {

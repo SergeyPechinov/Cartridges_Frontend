@@ -51,59 +51,110 @@ class ModalAddCartridges extends Component {
 	};
 
 	handleWorkers = id => {
-
-		const findWorker = (element, index) => {
-			const normalIndex = index + 1;
-			if (normalIndex === Number(id)) {
-				return true;
-			} else if (Number(id) === -1) {
-				return false;
-			}
-		};
-
-		const resultFindWorker = this.props.workersList.find(findWorker);
-
-		console.log(resultFindWorker);
-
-		if (resultFindWorker === undefined) {
+		if (id === -1) {
 			this.setState({
 				worker: -1,
 				position: '',
 				cabinet: '',
 			});
 		} else {
-			this.setState({
-				worker: resultFindWorker.id,
-				position: resultFindWorker.position,
-				cabinet: resultFindWorker.cabinet,
-			});
+			for (let worker of this.props.workersList) {
+				if (worker.id === Number(id)) {
+					this.setState({
+						worker: worker.id,
+						position: worker.position,
+						cabinet: worker.cabinet,
+					});
+
+					break;
+				}
+			}
 		}
 	};
 
 	addCartridge = () => {
 		const
-				id_inv = this.state.id_inv,
-				status = this.state.status,
-				mark = this.state.mark,
-				model = this.state.model;
+				values = {
+					id_worker: this.state.worker,
+					id_inv: this.state.id_inv,
+					id_status: this.state.status,
+					mark: this.state.mark,
+					model: this.state.model,
+					dateLastFill: this.state.dateLastFill,
+					datePurchase: this.state.datePurchase,
+				};
+
 		if (
-				id_inv !== '' &&
-				status !== -1 &&
-				mark !== '' &&
-				model !== ''
+				values.id_worker !== -1 &&
+				values.id_inv !== '' &&
+				values.id_status !== -1 &&
+				values.mark !== '' &&
+				values.model !== ''
 		) {
-			this.props.cartridgesAdd(this.props.authToken, this.state);
+			this.props.cartridgesAdd(this.props.authToken, values, this.addDelError);
+		} else {
+
+			let errorsStatus = {
+				id_worker: values.id_worker === -1,
+				id_inv: values.id_inv === '',
+				id_status: values.id_status === -1,
+				mark: values.mark === '',
+				model: values.model === '',
+			};
+
+			this.addDelError(errorsStatus);
 		}
 	};
 
-	componentDidUpdate(prevProps, prevState, snapshot) {
-		console.table(this.state);
-	}
+	addDelError = (errorsStatus, delError = true) => {
+		let
+				errorWorker = document.getElementById('js-modal-cartridges-error-worker'),
+				errorInv = document.getElementById('js-modal-cartridges-error-inv'),
+				errorStatus = document.getElementById('js-modal-cartridges-error-status'),
+				errorMark = document.getElementById('js-modal-cartridges-error-mark'),
+				errorModel = document.getElementById('js-modal-cartridges-error-model'),
+				errorCommon = document.getElementById('js-modal-cartridges-error-common');
+
+		if (delError) {
+			if (errorsStatus.id_worker) {
+				errorWorker.textContent = 'Не выбран работник!';
+			} else {
+				errorWorker.textContent = '';
+			}
+			if (errorsStatus.id_inv) {
+				errorInv.textContent = 'Минимум 1 символ!';
+			} else {
+				errorInv.textContent = '';
+			}
+			if (errorsStatus.id_status) {
+				errorStatus.textContent = 'Не выбран статус!';
+			} else {
+				errorStatus.textContent = '';
+			}
+			if (errorsStatus.mark) {
+				errorMark.textContent = 'Минимум 1 символ!';
+			} else {
+				errorMark.textContent = '';
+			}
+			if (errorsStatus.model) {
+				errorModel.textContent = 'Минимум 1 символ!';
+			} else {
+				errorModel.textContent = '';
+			}
+		} else {
+			errorWorker.textContent = '';
+			errorInv.textContent = '';
+			errorStatus.textContent = '';
+			errorMark.textContent = '';
+			errorModel.textContent = '';
+			errorCommon.textContent = '';
+		}
+	};
 
 	componentDidMount() {
 		this.props.statusesGetStart(this.props.authToken);
 		this.props.workersGetStart(this.props.authToken);
-	}
+	};
 
 	render() {
 		return (
@@ -117,15 +168,21 @@ class ModalAddCartridges extends Component {
 							</Button>
 						}
 				>
+					<p
+							id={'js-modal-cartridges-error-common'}
+							className={'modal-cartridges__error'}/>
 					<div className="modal-cartridges__rows">
 						<DropdownTitle
 								classWrapper="modal-cartridges__row"
 								onSelect={id => {
 									this.handleWorkers(id);
 								}}
-								title="Работник"
+								title="Работник*"
 								defaultValue="Работник"
 								list={this.props.workersList}/>
+						<p
+								id={'js-modal-cartridges-error-worker'}
+								className="modal-cartridges__error"/>
 						{this.state.position || this.state.cabinet ?
 								<Row class="modal-cartridges__row modal-cartridges__row-2">
 									{this.state.position ?
@@ -145,34 +202,50 @@ class ModalAddCartridges extends Component {
 								: null}
 						<Hr/>
 						<Row class="row--flex-end modal-cartridges__row modal-cartridges__row-2">
-							<InputWithTitle
-									classWrapper="modal-cartridges__row-2-item"
-									title="Инвентарный номер *"
-									value={this.state.id_inv}
-									onChange={this.handleIdInv}
-							/>
-							<DropdownTitle
-									classWrapper="modal-cartridges__row-2-item"
-									onSelect={id => {
-										this.handleStatus(id);
-									}}
-									title="Статус *"
-									defaultValue="Статус"
-									list={this.props.statusesList}/>
+							<div className="modal-cartridges__row-2-item">
+								<InputWithTitle
+										title="Инвентарный номер *"
+										value={this.state.id_inv}
+										onChange={this.handleIdInv}
+								/>
+								<p
+										id={'js-modal-cartridges-error-inv'}
+										className="modal-cartridges__error"/>
+							</div>
+							<div className="modal-cartridges__row-2-item">
+								<DropdownTitle
+										onSelect={id => {
+											this.handleStatus(id);
+										}}
+										title="Статус *"
+										defaultValue="Статус"
+										list={this.props.statusesList}/>
+								<p
+										id={'js-modal-cartridges-error-status'}
+										className="modal-cartridges__error"/>
+							</div>
 						</Row>
 						<Row class="modal-cartridges__row modal-cartridges__row-2">
-							<InputWithTitle
-									classWrapper="modal-cartridges__row-2-item"
-									title="Производитель *"
-									value={this.state.mark}
-									onChange={this.handleMark}
-							/>
-							<InputWithTitle
-									classWrapper="modal-cartridges__row-2-item"
-									title="Модель *"
-									value={this.state.model}
-									onChange={this.handleModel}
-							/>
+							<div className="modal-cartridges__row-2-item">
+								<InputWithTitle
+										title="Производитель *"
+										value={this.state.mark}
+										onChange={this.handleMark}
+								/>
+								<p
+										id={'js-modal-cartridges-error-mark'}
+										className="modal-cartridges__error"/>
+							</div>
+							<div className="modal-cartridges__row-2-item">
+								<InputWithTitle
+										title="Модель *"
+										value={this.state.model}
+										onChange={this.handleModel}
+								/>
+								<p
+										id={'js-modal-cartridges-error-model'}
+										className="modal-cartridges__error"/>
+							</div>
 						</Row>
 						<Row class="row--flex-end modal-cartridges__row modal-cartridges__row-2">
 							<InputWithTitle
@@ -201,7 +274,7 @@ class ModalAddCartridges extends Component {
 					</div>
 				</Modal>
 		);
-	}
+	};
 }
 
 const mapStateToProps = state => ({

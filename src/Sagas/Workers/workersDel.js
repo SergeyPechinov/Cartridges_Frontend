@@ -17,8 +17,13 @@ const axiosWorkersDel = (token, data) => {
 };
 
 function* sagaWorkersDel(data) {
-	yield axiosWorkersDel(data.token, {id: data.payload});
-	yield put(workersGetStart(data.token));
+	try {
+		yield axiosWorkersDel(data.token, {id: data.payload});
+		yield put(workersGetStart(data.token));
+	} catch (error) {
+		const errorMessages = error.response.data.message;
+		alert(errorMessages);
+	}
 }
 
 export function* workersDelSaga() {

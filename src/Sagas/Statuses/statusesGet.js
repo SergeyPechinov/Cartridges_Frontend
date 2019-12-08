@@ -18,6 +18,10 @@ const axiosStatusesGet = (token) => {
 function* sagaStatusesGet(data) {
   let result = null;
   yield axiosStatusesGet(data.payload).then((res) => { result = res.data});
+  const resultLength = result.length;
+  for (let i = 0; i < resultLength; i++) {
+    result[i].listName = result[i].name;
+  }
   yield put(statusesGet(result));
 }
 

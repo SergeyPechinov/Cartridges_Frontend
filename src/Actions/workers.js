@@ -12,13 +12,14 @@ export const workersGet = data => {
 	}
 };
 
-export const workersAddStart = (token, data, openCloseEditAddBlockWorker, addDelErrorAll) => {
+export const workersAddStart = (token, data, openCloseEditAddBlockWorker, addDelErrorAll, addCommonError) => {
 	return {
 		type: 'WORKERS_ADD_START',
 		token: token,
 		payload: data,
 		openCloseEditAddBlockWorker,
 		addDelErrorAll,
+		addCommonError,
 	}
 };
 
@@ -30,10 +31,13 @@ export const workersDelStart = (token, id) => {
 	}
 };
 
-export const workersEditStart = (token, data) => {
+export const workersEditStart = (token, data, openCloseEditAddBlockWorker, addDelErrorAll, addCommonError) => {
 	return {
 		type: 'WORKERS_EDIT_START',
 		token: token,
 		payload: data,
+		openCloseEditAddBlockWorker,
+		addDelErrorAll,
+		addCommonError,
 	}
 };

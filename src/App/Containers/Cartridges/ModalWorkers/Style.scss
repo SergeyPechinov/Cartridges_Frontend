@@ -175,6 +175,13 @@
     color: $color-red;
   }
 
+  &__common-error {
+    margin: 0 0 0 10px;
+    width: 100%;
+    @include font_size_small;
+    color: $color-red;
+  }
+
   &__button-wrapper {
     margin-top: 10px;
     box-sizing: border-box;

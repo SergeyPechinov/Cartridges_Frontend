@@ -16,6 +16,7 @@ $indentation__row: 10px;
   &__row {
     padding-top: $indentation__row;
     padding-bottom: $indentation__row;
+    align-items: flex-start;
 
     @include media_interval(0, $media500) {
       padding: 0;
@@ -42,5 +43,11 @@ $indentation__row: 10px;
         padding: 5px 0;
       }
     }
+  }
+
+  &__error {
+    margin: 5px 0 0 0;
+    @include font_size_small;
+    color: $color-red;
   }
 }

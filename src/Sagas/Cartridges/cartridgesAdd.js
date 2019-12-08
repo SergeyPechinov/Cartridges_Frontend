@@ -4,7 +4,7 @@ import mainStore from './../../forStartConstants';
 
 const axiosCartridgesAdd = (token, data) => {
 	return axios({
-				method: 'PUT',
+				method: 'POST',
 				url: `http://${mainStore.API_URL}/cartridges/`,
 				headers: {
 					'Content-Type': 'application/json',
@@ -16,10 +16,17 @@ const axiosCartridgesAdd = (token, data) => {
 };
 
 function* sagaCartridgesAdd(data) {
-	let result = null;
-	yield axiosCartridgesAdd(data.token, data.payload).then((res) => {
-		result = res.data
-	});
+	try {
+		yield axiosCartridgesAdd(data.token, data.payload);
+		return true;
+	} catch (error) {
+		const errorMessages = error.response.data.message;
+		if (typeof errorMessages === 'object') {
+			data.addDelError(errorMessages);
+		} else {
+			document.getElementById('js-modal-cartridges-error-common').textContent = errorMessages;
+		}
+	}
 }
 
 export function* cartridgesAddSaga() {

@@ -5,7 +5,7 @@ import mainStore from './../../forStartConstants';
 
 const axiosCartridgesGet = (token) => {
   return axios({
-        method: 'POST',
+        method: 'GET',
         url: `http://${mainStore.API_URL}/cartridges/`,
         headers: {
           'Content-Type': 'application/json',
